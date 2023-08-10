@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const BookSchema = new Schema({
   title: { type: String, required: true },
-  // 这里author字段是对其它模型的引用
+  // 这里author字段和genre是对其它模型的引用
   author: { type: Schema.Types.ObjectId, ref: "Author", required: true },
   summary: { type: String, required: true },
   isbn: { type: String, required: true },

@@ -1,7 +1,45 @@
+//- 基本模板 pug允许在基础模板上进行扩展 可以只替换每个页面不同的部分
 doctype html
-html
+html(lang='en')
   head
     title= title
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    //- bootstrap设置了包裹页面内容和栅格系统的容器1、.container 2、.container-fluid
+    //- container-fluid 用于 100% 宽度，占据全部视口（viewport）的容器
+    div(class='container-fluid')
+      //- 行（row）”必须包含在 .container
+      div(class='row')
+        //- 系统会自动分为最多12列。
+        div(class='col-sm-2')
+          //- 块标记 block用于标记“可在派生模板中替换的内容部分”
+          block sidebar
+            ul(class='sidebar-nav')
+              li
+                a(href='/catalog') Home
+              li
+                a(href='/catalog/books') All books
+              li
+                a(href='/catalog/authors') All authors
+              li
+                a(href='/catalog/genres') All genres
+              li
+                a(href='/catalog/bookinstances') All book-instances
+              li
+                hr
+              li
+                a(href='/catalog/author/create') Create new author
+              li
+                a(href='/catalog/genre/create') Create new genre
+              li
+                a(href='/catalog/book/create') Create new book
+              li
+                a(href='/catalog/bookinstance/create') Create new book instance (copy)
+
+        div(class='col-sm-10')
+          block content
